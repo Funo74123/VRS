@@ -89,14 +89,16 @@ int main(void)
     GPIOC->PUPDR &=~(0b11<<13*2);
 
     int x;
+    int stary;
+    int novy;
     /*Uloha3*/
 
   /* Infinite loop */
   while (1)
   {
-	i++;
 
-	/*uloha 3*/
+
+	/*uloha 3_2
 	x = ((GPIOC->IDR &0b1<<13) >> 13);
 	if (x == 1){
 		GPIOA->BSRRL |=0b01<<5;
@@ -104,7 +106,18 @@ int main(void)
 	else if (x == 0){
 		GPIOA->BSRRH |=0b01<<5;
 	}
-	/*uloha 3 end*/
+	uloha 3_2 end*/
+
+	/*uloha3_3*/
+	stary = novy;
+	novy = ((GPIOC->IDR &0b1<<13) >> 13);
+
+	if ((stary == 1)&&(novy == 0)){
+		GPIOA->ODR ^=0b1<<5;
+	}
+	/**/
+
+	i++;
   }
   return 0;
 }
